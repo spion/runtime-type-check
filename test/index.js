@@ -5,10 +5,10 @@ var TC = require('../');
 
 // A simple test
 var Person = TC.object({
-    name: TC.string(),
-    age: TC.number(),
-    hobbies: TC.array(TC.string()),
-    partner: TC.optional(TC.string())
+    name: TC.string,
+    age: TC.number,
+    hobbies: TC.array(TC.string),
+    partner: TC.optional(TC.string)
 });
 
 function logIsPerson(obj) {

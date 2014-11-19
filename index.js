@@ -1,13 +1,12 @@
 var TC = {};
 
 TC.type = function(typestr) {
-    return function(msg) {
-        return function(p) {
-            if (typeof(p) !== typestr)
-                return "must be a " + typestr;
-        }
+    return function(p) {
+        if (typeof(p) !== typestr)
+            return "must be a " + typestr;
     }
 }
+
 TC.string = TC.type('string');
 TC.number = TC.type('number');
 TC.boolean = TC.type('boolean');
@@ -19,7 +18,7 @@ TC.object = function (spec) {
         for (var key in spec)
             if (spec.hasOwnProperty(key)) {
                 var test = spec[key](obj[key], key);
-                if (test != null) 
+                if (test != null)
                     return makeMessage('property', key, test);
             }
     }
@@ -72,5 +71,3 @@ TC.check = function(type, val, msg) {
 }
 
 module.exports = TC;
-
-
