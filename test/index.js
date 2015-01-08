@@ -16,8 +16,15 @@ function logIsPerson(obj) {
     catch (e) { console.log(e.message); }
 }
 
+function test(type, value, expected) {
+    t.test(JSON.stringify(value), function(t) {
+        if (expected) t.notOk(type(value), 'should be specified type');
+        else t.ok(type(value), 'should not be specified type');
+        t.end();
+    });
+}
 
-logIsPerson({name: "John", age: 128});
-logIsPerson({name: "John", age: 256, hobbies: [1,2,3]});
-logIsPerson({name: 123, age: 512});
-logIsPerson({name: "John", age: 1024, partner: false, hobbies: []});
+test(Person, {name: "John", age: 12}, false);
+test(Person, {name: "John", age: 256, hobbies: [1,2,3]}, false);
+test(Person, {name: 123, age: 512}, false);
+test(Person, {name: "John", age: 1024, partner: false, hobbies: []}, false);
