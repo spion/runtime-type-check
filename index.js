@@ -54,8 +54,10 @@ TC.either = function(checker1, checker2) {
 
 TC.both = function(checker1, checker2) {
     return function(item) {
-        var r1 = checker1(item), r2 = checker2(item);
-        return r1 && r2;
+        var c1 = checker1(item);
+        if (c1 != null) return c1;
+        var c2 = checker2(item);
+        if (c2 != null) return c2;
     }
 }
 
